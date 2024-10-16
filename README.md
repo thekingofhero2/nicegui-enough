@@ -1,4 +1,4 @@
-# nicegui-enough nicegui 的一系列demo
+# nicegui-enough 争取做nicegui最有用的中文入门教程
 
 配合公众号“敲键盘的生活”系列文章“nicegui 够用就好系列”
 
@@ -30,4 +30,4 @@
   ![1729042605847](image/README/1729042605847.png)
 - 也可以加作者共同学习
   ![1729042310838](image/README/1729042310838.png)
-- 图片看不见，可以访问[码云](https://gitee.com/thekingofhero/nicegui-enough)的仓库地址
+- 图片都是代码运行的GIF，如果看不见，可以访问[码云](https://gitee.com/thekingofhero/nicegui-enough)的仓库地址
