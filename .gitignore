@@ -162,3 +162,4 @@ cython_debug/
 #.idea/
 
 .nicegui
+05管理后台/db2.db

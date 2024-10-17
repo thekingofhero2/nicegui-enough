@@ -13,10 +13,6 @@ import json
 
 #2.认证中间件（这部分改的官方样例），用来判断登录状态，及未认证情况下的操作
 class AuthMiddleware(BaseHTTPMiddleware):
-    """This middleware restricts access to all NiceGUI pages.
-
-    It redirects the user to the login page if they are not authenticated.
-    """
 
     async def dispatch(self, request: Request, call_next):
         #3.判断是否登录
