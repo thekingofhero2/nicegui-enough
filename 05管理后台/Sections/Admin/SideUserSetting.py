@@ -7,7 +7,7 @@ from hashlib import md5
 
 from Sections.Admin.PageAdminConf import LEFT_NAVS
 
-class SideUser:
+class SideUserSetting:
     def __init__(self,db) -> None:
         self.page_title = "用户设置"
         self.db = db 
@@ -27,9 +27,9 @@ class SideUser:
             ui.button('保存密码', on_click=save_pwd)
 
 
-@ui.page("/admin/user")
-def side_user(db:Session = Depends(get_db)):
+@ui.page("/admin/usersetting")
+def side_usersetting(db:Session = Depends(get_db)):
     """
     """
-    page = SideUser(db)
+    page = SideUserSetting(db)
     page.show()

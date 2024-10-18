@@ -1,4 +1,4 @@
-from nicegui import ui,app 
+from nicegui import ui 
 
 
 class WarnDialog:
@@ -12,13 +12,12 @@ class WarnDialog:
         self.header = header
         self.content = content
         self.close_redirect = close_redirect
-        self.dialog = ui.dialog()
-        self.dialog_card = ui.card()
     def show(self):
-        with self.dialog, self.dialog_card:
+        with ui.dialog() as dialog, ui.card():
             with ui.card_section():
                 ui.label(self.header).classes("text-h6")
             with ui.card_section().classes("q-pt-none"):
                 ui.label(self.content)
-            ui.button('Close', on_click= ui.navigate.to(self.close_redirect) )
-        self.dialog.open()
+            with ui.card_actions().classes("w-full justify-end"):#.props("align=right"):
+                ui.button('ok', on_click=lambda : ui.navigate.to(self.close_redirect) ).props("flat")
+        dialog.open()

@@ -20,7 +20,7 @@ class SideSystemSetting:
             ui.label("系统设置页面")
             ui.input("网站名称").bind_value(app.storage.user['site_conf'],"site_name")
             def save_auth(e):
-                with open('site.conf','w') as fpw:
+                with open('site.conf','w',encoding="utf8") as fpw:
                     json.dump(app.storage.user['site_conf'],fp=fpw)
 
             ui.button('保存网站信息', on_click=save_auth) 

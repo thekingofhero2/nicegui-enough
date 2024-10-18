@@ -16,7 +16,14 @@ class Section:
     section_name :str #网页名
     uri :str #网页地址
 
-
+@dataclass 
+class LeftNav:
+    """
+    定义左侧边栏数据类型
+    """
+    expander_name :str #expander_name，如果不需要expander，则设置为None
+    section_name :str #网页名
+    uri :str #网页地址
 #实例化网页，指明网页名、地址
 sections = [
     Section("首页","/"),
