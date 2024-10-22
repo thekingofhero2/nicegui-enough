@@ -8,6 +8,7 @@ from nicegui import Client, app, ui
 import DB.Models as Models 
 from DB.CRUD import *
 from settings import get_db
+from utils.LoginHelpers import check_uname
 import time
 
 
@@ -34,12 +35,7 @@ def register(db:Session = Depends(get_db)):
     ui.page_title("注册")
     page_init()
     app.storage.client["register.check_uname"] = False
-    def check_uname() -> None:  # local function to avoid passing username and password as arguments
-        if not check_user_exists(db=db,uname = username.value):
-            app.storage.client["register.check_uname"] = True
-        else:
-            app.storage.client["register.check_uname"] = False
-            ui.notify("账户已存在",type="warning")
+    
 
     def check_register() -> None:
         if password.value != password_2.value:
@@ -63,7 +59,7 @@ def register(db:Session = Depends(get_db)):
                                                         border-right: 2px rgba(40,40,40,0.35) solid;
                                                                                                """):
             ui.label("欢迎注册！").classes("text-h5 text-center text-grey-1 ")
-            username = ui.input('账号',on_change=check_uname).props("outlined").style("color: rgb(37 99 235)")
+            username = ui.input('账号',on_change=lambda e:check_uname(db,e.value)).props("outlined").style("color: rgb(37 99 235)")
             with username:
                 ui.icon(name="check",size="md",color="green").bind_visibility(app.storage.client,"register.check_uname")
             password = ui.input('密码', password=True, password_toggle_button=True).props("outlined")
@@ -85,14 +81,17 @@ def login(db:Session = Depends(get_db)) -> Optional[RedirectResponse]:
     ui.page_title("登录")
     page_init()
     async def try_login() -> None:  # local function to avoid passing username and password as arguments
+        create_login_log(db,username.value,log_content="尝试登录",log_level=0)
         check_res = check_pwd(db=db,uname = username.value,pwd=md5(password.value.encode("utf-8")).hexdigest())
         if check_res is not None:
+            create_login_log(db,username.value,log_content="登录成功",log_level=0)
             app.storage.user['authenticated'] = True
             app.storage.user["username"] = username.value
             app.storage.user["uid"] = check_res[0]
             app.storage.user["role"] = check_res[1]
             ui.navigate.to('/')
         else:
+            create_login_log(db,username.value,log_content="登录失败",log_level=2)
             ui.notify("用户名或密码错误",type='negative')
     if app.storage.user.get('authenticated', False):
         return RedirectResponse('/')

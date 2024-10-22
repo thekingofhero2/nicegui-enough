@@ -23,3 +23,16 @@ class Message(Base):
     msg_content = Column(Text,comment="内容")
     created_at = Column(DateTime, default=datetime.now())
 
+class Log(Base):
+    __tablename__ = "user_log"
+    __table_args__ = {
+        "comment":"用户日志"
+    }
+    id = Column(Integer,primary_key=True,autoincrement=True,comment = "id表示每一条日志")
+    uname = Column(VARCHAR(255) )#如果在尝试登录时，是没有uid的
+    user_id = Column(Integer,ForeignKey("user.id"))
+    user = relationship("User",backref="log_of_user")
+    log_type = Column(Integer,comment="日志类型：0-登录日志（default） 1-操作日志。。。",default = 0)
+    log_level = Column(Integer,comment="日志级别：0-info（default） 1-debug 2-warning 3-error。。。",default = 0)
+    log_content = Column(Text,comment="日志内容")
+    created_at = Column(DateTime, default=datetime.now())

@@ -58,3 +58,39 @@ def query_all_message_by_uid(db :Session,uid:str):
 def query_message_by_id(db:Session,id:str):
     all = db.query( models.Message.msg_title,models.Message.msg_content).filter(models.Message.id == id).first()
     return all
+
+##############Log#########
+def create_login_log(db :Session,uname :str,log_content:str,log_level:int):
+    logobj = models.Log(uname = uname,log_type=0 ,log_content=log_content,log_level=log_level)
+    db.add(logobj)
+    db.commit()
+    db.refresh(logobj)
+    return logobj
+
+def create_log(db :Session,uid :str,log_type:int,log_content:str,log_level:int):
+    logobj = models.Log(user_id = uid,log_type=log_type ,log_content=log_content,log_level=log_level)
+    db.add(logobj)
+    db.commit()
+    db.refresh(logobj)
+    return logobj
+
+def query_all_log(db :Session):
+    all = db.query( models.Log).all()
+    log_level_dict = {
+        0:'info',
+        1:'debug',
+        2:'warning',
+        3:'error'
+    }
+    log_type_dict = {
+        0:'登录日志',
+        1:'操作日志',
+    }
+    all_list = [{'id':log_i.id
+                 ,'log_level':log_level_dict[log_i.log_level]
+                 ,'log_level_org':log_i.log_level
+                 ,'uname': log_i.uname
+                 ,'log_type':log_type_dict[log_i.log_type]
+                 ,'log_content':log_i.log_content
+                 ,'log_time':log_i.created_at} for log_i in all]
+    return all_list

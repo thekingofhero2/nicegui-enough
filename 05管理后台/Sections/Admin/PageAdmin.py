@@ -10,6 +10,7 @@ from settings import get_db
 """
 from Sections.Admin.SideSystemSetting import side_system
 from Sections.Admin.SideSystemUserManage import side_systemusermanage
+from Sections.Admin.SideSystemLogAudit import side_systemlogaudit
 from Sections.Admin.SideUserSetting import side_usersetting
 from Sections.Admin.SideUserContent import side_usercontent
 
