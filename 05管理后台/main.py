@@ -33,4 +33,4 @@ app.on_shutdown(close_db)
 app.add_middleware(AuthMiddleware)
 
 
-ui.run(storage_secret="abc",favicon= ROOT / "assets" / "favicon.png")
+ui.run(storage_secret="abc",favicon= ROOT / "assets" / "favicon.png",reload=False)

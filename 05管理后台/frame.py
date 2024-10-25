@@ -1,4 +1,4 @@
-from nicegui import ui,app
+from nicegui import ui,app,client
 from typing import List
 from contextlib import contextmanager
 from settings import Section,sections,LeftNav
@@ -25,19 +25,19 @@ def merge_leftnavs(left_navs :List[LeftNav]):
 @contextmanager
 def frame(nav_title :str,left_navs :List[Section] ,show_drawer):
     ui.page_title(nav_title)
-    with ui.header():
+    with ui.header().classes("glossy"):
         with ui.row().classes("w-full"):
             if  nav_title!="首页":
                 ui.button(icon='menu',on_click=lambda :left_drawer.toggle() ).props('flat color=white')           
             with ui.link(target="/"):
-                ui.button(f"{app.storage.user['site_conf']['site_name']}").props("flat").style("font-size:150%;font-width:300").classes("text-yellow-6")
+                ui.button(f"{app.storage.user['site_conf']['site_name']}").props("flat").style("font-size:150%;font-width:300").classes("text-warning text-weight-bolder")
             for section in sections:
                 #导航栏的每一个导航格，就是一个按钮
                 with ui.link(target = section.uri):
                     """
                     flat:让button扁平化，没有四周的框
                     """
-                    ui.button(section.section_name).props("flat").style("font-size:150%;font-width:300").classes("text-blue-grey-1")
+                    ui.button(section.section_name).props("flat").style("font-size:150%;font-width:300").classes("text-blue-grey-1 text-weight-bold")
             ui.space()
             
             #用户登录

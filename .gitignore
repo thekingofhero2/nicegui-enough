@@ -163,3 +163,4 @@ cython_debug/
 
 .nicegui
 05管理后台/db2.db
+05管理后台/pack

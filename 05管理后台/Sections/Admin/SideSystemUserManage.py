@@ -35,7 +35,7 @@ class SideSystemUserManage:
         ui.table(columns=columns, rows=rows, row_key='name',pagination = 10, column_defaults={
                     'align': 'left',
                     'headerClasses': 'uppercase text-primary',
-                })
+                }).classes("w-full")
             
 
 @ui.page("/admin/systemusermanage")

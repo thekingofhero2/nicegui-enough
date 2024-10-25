@@ -28,6 +28,8 @@
 - 阅读原文请关注公众号，[nicegui 够用就好系列”](https://mp.weixin.qq.com/mp/appmsgalbum?__biz=Mzg5NjQzNTg5OA==&action=getalbum&album_id=3621183102564827145#wechat_redirect)
 
   ![1729586951132](image/README/1729586951132.png)
+- 建立了“NiceGUI交流群”，欢迎扫码入群，共同学习交流
+  ![群](image/README/群.jpg)
 - 也可以加作者共同学习
   ![1729586957330](image/README/1729586957330.png)
 - 图片都是代码运行的GIF，如果看不见，可以访问[码云](https://gitee.com/thekingofhero/nicegui-enough)的仓库地址
