@@ -26,7 +26,7 @@ with ui.grid(columns=12):
     ui.button("普通按钮").classes("col-span-4")
     ui.button("普通按钮").classes("col-span-1 h-[300px]")
     ui.button("普通按钮").classes("col-span-1")
-
+ui.separator()
 ui.label("3.2.4 网格行").classes("text-h2")
 with ui.row().classes("bg-red"):
     ui.button("普通按钮")
@@ -36,15 +36,29 @@ with ui.row().classes("w-full bg-red"):
     ui.button("普通按钮").classes("h-[300px]")
     ui.button("普通按钮")
 
+ui.separator()
+ui.label("3.2.4 网格列1-默认纵向排布").classes("text-h2")
+#注意：列并不是我们想象中的横向排布，而是纵向排布
 with ui.column().classes("bg-red"):
     ui.button("普通按钮1")
     ui.button("普通按钮2")
     ui.button("普通按钮3")
 
-with ui.column().classes("w-full bg-red"):
+with ui.column().classes("bg-red"):
     ui.button("普通按钮1").classes("w-[300px]")
     ui.button("普通按钮2").classes("h-[300px]")
     ui.button("普通按钮3")
+ui.label("3.2.4 网格列2-横向排布").classes("text-h2")
+#注意：列并不是我们想象中的横向排布，而是纵向排布，如果想横向排布怎么办？简单，把列嵌套在行里。
+with ui.row():
+    with ui.column().classes("bg-red"):
+        ui.button("普通按钮1")
+        ui.button("普通按钮2")
+        ui.button("普通按钮3")
 
+    with ui.column().classes("bg-red"):
+        ui.button("普通按钮1").classes("w-[300px]")
+        ui.button("普通按钮2").classes("h-[300px]")
+        ui.button("普通按钮3")
 ###3.2.2 盒子模型
 ui.run()
