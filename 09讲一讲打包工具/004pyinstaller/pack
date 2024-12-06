@@ -1,0 +1,1 @@
+pyinstaller --name myapp -F -w --add-data D:\workspace\nicegui_enough\venv\lib\site-packages\nicegui:nicegui main.py --splash gzh.png

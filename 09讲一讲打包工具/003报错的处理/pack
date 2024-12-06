@@ -1,0 +1,2 @@
+报错，找不到目录：nicegui-pack --onefile --name "myapp" main.py
+正常：nicegui-pack --name "myapp" --onefile --add-data .\assets:assets  main.py
